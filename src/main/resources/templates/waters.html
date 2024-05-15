@@ -6,6 +6,22 @@
     <title>Document</title>
 </head>
 <body>
+	<div>
+	    <form th:action="@{/filter}">
+	        <h3> &nbsp Filter :</h3> 
+			<input type="date" name="date1" required />
+	        <input  type="date" name="date2" />
+	        <input  class ="btn btn-danger" type="submit" value="Search"/>
+			<input  class ="btn btn-danger" type="button" value="Clear" onclick="clearSearch()"/>
+	    </form>
+	</div>
+	<script>
+	    function clearSearch(){
+	        window.location='/';
+	    }
+	    
+	</script>
+	<br>
     <table>
         <thead>
             <tr>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Spring Delete Example</title>
+<link rel="stylesheet" th:href="@{../css/styles.css}">
+</head>
+<body><style>
+    body{
+        background-color:#eee ;
+        }
+</style>
+   <form th:action="@{/delete/}+${id}" method="post">
+      <div>
+         <label> Quantity of Water : <input type="text" name="" th:value="${waterDetails.amountOfWater}" /></label>
+      </div>
+      <div>
+         <input type="submit" value="Delete" />
+      </div>
+   </form>
+</body>
+</html>

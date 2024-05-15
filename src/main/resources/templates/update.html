@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Spring Update Example</title>
+<link rel="stylesheet" th:href="@{../css/styles.css}">
+</head>
+<body>
+   <div th:if="${message}" th:text=${message}></div>
+   <form th:action="@{/update/}+${id}" method="post">
+
+
+         <div>
+            <label>Water Quantity : <br>
+            <input type="number" name="amountOfWater" th:value="${waterDetails.amountOfWater}" /></label>
+         </div>
+         <div>
+            <input type="submit" value="Update" />
+         </div>
+   </form>
+</body>
+</html>

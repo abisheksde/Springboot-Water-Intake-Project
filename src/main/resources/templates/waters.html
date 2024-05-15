@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Expiry Date</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="waters : ${waters}">
+                <td th:text="${waters.getAmountOfWater()}"></td>
+                <td th:text="${waters.getDate()}"></td> <!-- Ensure the property name matches -->
+                <td>
+                    <a th:href="@{/update/{id}(id=${waters.id})}" class="btn btn-warning">Edit</a>
+                </td>
+                <td>
+                    <a th:href="@{/delete/{id}(id=${waters.id})}" class="btn btn-danger" onclick="$('#myModal').modal();">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+	
+	<a th:href="@{/create}">Add New Entry</a>
+	
+	<form 	th:action="@{/logout}" method="post">
+		<input type="submit" value="Logout">
+	</form>
+    
+</body>
+</html>

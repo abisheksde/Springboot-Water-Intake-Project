@@ -50,6 +50,14 @@
 	<form 	th:action="@{/logout}" method="post">
 		<input type="submit" value="Logout">
 	</form>
-    
+<!--	
+	<div th:if="${users.totalPages > 0}" class="pagination" >
+	  <th:block th:each="pageNumber : ${pageNumbers}">
+	  <a  th:href="@{/pagination(page=${pageNumber})}"
+	      th:text=${pageNumber}
+	      th:class="${pageNumber==users.number + 1} ? active"></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	  </th:block>
+	 </div>
+    -->
 </body>
 </html>

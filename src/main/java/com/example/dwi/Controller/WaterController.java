@@ -4,6 +4,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Page;
+import java.util.List;
+import java.util.stream.IntStream;
+import java.util.stream.Collectors;
 
 import com.example.dwi.Model.Water;
 import com.example.dwi.Repository.WaterRepository;
@@ -12,6 +18,8 @@ import com.example.dwi.Service.WaterService;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -48,7 +56,7 @@ public class WaterController {
         //////////
         //WaterService.addProduct(waterData);
         
-        // Save the product to the database
+        //Save the product to the database
 	    waterRepository.save(water);
 
 	    model.addAttribute("message", "The Water Details has been created successfully");
@@ -64,8 +72,11 @@ public class WaterController {
         // Retrieve product list based on the user's email
 	    Iterable<Water> waters = waterRepository.findByUserEmail(userEmail);
 	    model.addAttribute("waters", waters);
+	   
 	    return "waters";
 	}
+	
+	
 /*	
 	@GetMapping("/filter")
     public String getProductsByDateRangeAndEmail(
@@ -102,7 +113,7 @@ public class WaterController {
 	    waterDetails.setDate(LocalDate.now());
 	    waterRepository.save(waterDetails);
 	    
-	    return "redirect:/all";
+	    return "redirect:/";
 	}
 	
 	@GetMapping("/delete/{id}")
@@ -118,8 +129,40 @@ public class WaterController {
 	public String deleteProducts(@PathVariable Integer id, Model model) {    
 	    if (id != null) {
 	    	waterRepository.deleteById(id);
-	        return "redirect:/all";
+	        return "redirect:/";
 	    }
 	    return "delete";
 	}
+	
+//	@GetMapping("/pagination")
+//	public String getAllUsers(Model model,@RequestParam(name="page",required=false) Integer page) {
+//
+//		if(page==null) {
+//			page = 1;
+//		}
+//
+//		Integer LIMIT = 3;
+//		Pageable pageable = PageRequest.of(page-1, LIMIT);
+//		Page<Water> users = waterRepository.findAll(pageable);
+//
+//		int totalPages = users.getTotalPages();
+//		if (totalPages > 0) {
+//			List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
+//					.boxed()
+//					.collect(Collectors.toList());
+//			model.addAttribute("pageNumbers", pageNumbers);
+//			System.out.println(pageNumbers);
+//		}    
+//		// Retrieve the currently authenticated user's email
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        String userEmail = authentication.getName();
+//
+//        // Retrieve product list based on the user's email
+//	    Iterable<Water> waters = waterRepository.findByUserEmail(userEmail);
+//
+//		model.addAttribute("waters", waters);
+//
+//		return "waters";
+//
+//	}
 }

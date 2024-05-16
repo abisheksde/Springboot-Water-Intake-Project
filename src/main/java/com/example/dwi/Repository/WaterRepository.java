@@ -2,6 +2,8 @@ package com.example.dwi.Repository;
 
 
 import java.time.LocalDate;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -25,5 +27,7 @@ public interface WaterRepository extends JpaRepository<Water, Integer> {
 	Iterable<Water> findByDateRangeAndEmail(@Param("email") String email, @Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate,);
 
 	 */
+	
+	//Page findAll(Pageable pageable);
 
 }
